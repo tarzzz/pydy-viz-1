@@ -1,4 +1,5 @@
 from sympy.physics.mechanics import *
+from sympy import symbols
 #from pydy-viz import VisualizationFrame
 #First we need to define some quantities... 
 p = dynamicsymbols('p:3')
@@ -60,7 +61,8 @@ def test_vframe_with_rframe():
     frame1.shape = mesh_shape2
     assert frame1.shape == mesh_shape2    
     
-    
+    transform_matrix = 
+    assert_allclose(frame.transform(I,O),transform_matrix)    
     
 
 def test_vframe_with_rbody():
@@ -85,6 +87,9 @@ def test_vframe_with_rbody():
     frame1.shape = mesh_shape2
     assert frame1.shape == mesh_shape2    
     
+    transform_matrix = 
+    assert_allclose(frame.transform(I,O),transform_matrix)
+    
 def test_vframe_with_particle():
     
     frame3 = VisualizationFrame('frame3', [particle1, A], shape=mesh_shape1)
@@ -107,5 +112,6 @@ def test_vframe_with_particle():
     frame1.shape = mesh_shape2
     assert frame1.shape == mesh_shape2        
 
-
+    transform_matrix = 
+    assert_allclose(frame.transform(I,O),transform_matrix)    
 
