@@ -3,22 +3,27 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to PyDy Visualization Package's documentation!
+Welcome to PyDy-Viz's documentation!
 ======================================================
 
-This Page is provided to document the progress and features of the visualization package PyDy-Viz
+`PyDy-Viz <http://pydy.org>`_ is a Python library for 3D visualizations 
+of multibody systems.
+
+This is the central page for all of PyDy-Viz's documentation.
 
 
+Contents:
 
 .. toctree::
    :maxdepth: 2
 
+   install.rst
+   modules/index.rst
+   wiki.rst
+   outreach.rst
+   aboutus.rst
 
+If something cannot be easily accessed from this page, it's a bug (`please
+report it`_).
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+This documentation is maintained with docutils, so you might see some comments in the form #doctest:... . You can safely ignore them.
