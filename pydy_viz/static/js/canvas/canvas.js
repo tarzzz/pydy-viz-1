@@ -5,24 +5,22 @@ var Canvas = function(JSONObj) {
 
     this.grid = new THREE.Object3D();
     this.grid.name = "Grid";
-    
+
     this.cameras = new THREE.Object3D()
     this.cameras.name = "Cameras";
-    
+
     this.lights = new THREE.Object3D()
     this.lights.name = "Lights";
-    
+
     this.frames = new THREE.Object3D();
     this.frames.name = "Frames";
-    
+
     this.animationCounter = 0;
     var renderer, scene, primaryCamera, primaryControls
 
 };
-    
+
 Canvas.prototype.initialize = function(){
-
-
 
 	this.renderer = new THREE.WebGLRenderer();
 	this.renderer.setSize(JSONObj.width, JSONObj.height);
@@ -142,14 +140,14 @@ Canvas.prototype.addFrames = function(){
         console.log(_frame);
         console.log(_frame.shape);
         switch(_frame.shape.type){
-        
+
         case "Cylinder":
             var color = new THREE.Color().setRGB(_frame.shape.color[0],
                            _frame.shape.color[1], _frame.shape.color[2])
-                                    
+
             var _material = new THREE.MeshLambertMaterial({
-                                     color:       _frame.shape.color,
-                                     wireframe:   true,
+                                     color: _frame.shape.color,
+                                     wireframe: true,
                                      wireframeLinewidth: 0.1,
                                      opacity: 0.5
                                      });
@@ -160,36 +158,34 @@ Canvas.prototype.addFrames = function(){
                                       _frame.shape.height,
                                       50,50);
             var _mesh = new THREE.Mesh(_geometry, _material);
-            
+
             var _element = new Float32Array(_frame.simulation_matrix[0]);
             var initMatrix = new THREE.Matrix4();
             initMatrix.elements = _element;
             _mesh.applyMatrix(initMatrix);
-            
+
         // case for more shapes ...
-        
+
         }
         this.frames.add(_mesh);
-       
+
     }
     this.scene.add(this.frames);
 };
 
 
-
 Canvas.prototype.startAnimation = function(){
-    for(var i = 0; i< 100; i++){
-    for(var key in this.frames.children){
-        
-        var _element = new Float32Array(
+    for(var i = 0; i< 6000; i++){
+        for(var key in this.frames.children){
+            var _element = new Float32Array(
                JSONObj.frames[key].simulation_matrix[i]
                     );
-        var _matrix = new THREE.Matrix4();
-        _matrix.elements = _element;
-        this.frames.children[key].applyMatrix(_matrix)
-        i++;
-        if(i >=100) {i = 0; }
-        
-        }
+            var _matrix = new THREE.Matrix4();
+            _matrix.elements = _element;
+            this.frames.children[key].applyMatrix(_matrix)
+            i++;
+            if(i >=6000) {i = 0; }
+
+       }
     }
 };
